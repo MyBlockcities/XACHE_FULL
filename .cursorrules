@@ -1,0 +1,31 @@
+## Overview
+This file governs how Goose and any integrated extensions create, manage, and track code and tasks in the project.
+
+## 1. Project Structure
+- All source code belongs in `src/`.
+- Shared logic in `src/utils/`.
+- Extensions each get their own folder under `src/extensions/`.
+- Config files live in `config/`.
+- Progress tracking and logs in `progress/`.
+
+## 2. Central Progress File
+- Must be named `TASKS.md` within `progress/`.
+- Always update tasks with `[x]` or `[~]` status upon each successful or partial completion.
+- Document chain-of-thought summaries for each major milestone.
+
+## 3. Chain of Thought
+- Maintain ephemeral logs for reasoning steps (for debugging).
+- Summaries of key decisions are appended to `progress/chain_of_thought.md`.
+
+## 4. Self-Correction
+- On error, attempt automatic fix (retry tokens, re-check config, etc.).
+- If repeated failures, mark `[!] Blocked` in `TASKS.md` and note error details.
+
+## 5. No Duplication
+- Always scan existing files in `src/` before creating new ones.
+- If a script or file exists for the same function, reuse or extend it.
+
+## 6. Clean, Consistent Code
+- Follow naming conventions for files and directories.
+- Place environment variables in `.env` or `goose-config.json`.
+- Keep documentation updated in `docs/`.
